@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donor Finder</title>
+    <link rel="stylesheet" href="styles/search.css">
+    <link rel="stylesheet" href="styles/general.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Body Styling */
+        body {
+            background-color: #fde4e4; /* Pale red background */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: #d9534f;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .navbar nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar nav ul li a:hover {
+            background-color: #c9302c;
+            border-radius: 5px;
+        }
+
+        .register-btn {
+            color: #fff;
+            background: #5cb85c;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .register-btn:hover {
+            background: #4cae4c;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: #fde4e4; /* Pale red background */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            color: #ff0000; /* Updated reddish color */
+            position: relative;
+            padding: 0 5%;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #d9534f; /* Reddish color for the heading */
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            max-width: 600px;
+            color: #d9534f; /* Reddish color for the tagline */
+        }
+
+        /* Slide Animation */
+        .slide-container {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .slide-container img {
+            width: 100%;
+            animation: slideIn 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        /* Search Form Section */
+        .container {
+            padding: 2rem 5%;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 2rem auto;
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #d9534f;
+            font-weight: bold;
+        }
+
+        .search-form label {
+            font-weight: bold;
+            color: #333;
+            margin: 0.5rem 0;
+        }
+
+        .search-form select,
+        .search-form button {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .search-form button {
+            background-color: #d9534f;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-form button:hover {
+            background-color: #c9302c;
+        }
+
+        /* Footer Styling */
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer h4 {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            color: #aaa;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Blood Bridge</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#search">Search Donors</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul>
+        </nav>
+        <a href="register.html" class="register-btn">Register Here</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Find Nearby Blood Donors</h1>
+        <p>Donate blood, save lives. Find blood donors in your city and save a life today!</p>
+    </section>
+
+    <!-- Slide Image Section -->
+    <div class="slide-container">
+        <img src="images/donation-slide-1.jpg" alt="Blood Donation Image 1">
+    </div>
+
+    <!-- Search Form Section -->
+    <div class="container" id="search">
+        <h2>Search for Blood Donors</h2>
+        <form id="search-form" method="GET" action="search.php" class="search-form">
+            <label for="blood_group">Blood Group:</label>
+            <select id="blood_group" name="blood_group" required>
+                <option value="">--Select Blood Group--</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select><br>
+            
+            <label for="city">City:</label>
+            <select id="city" name="city">
+                <option value="">--Select City--</option>
+                <option value="Kompally">Kompally</option>
+                <option value="Medchal">Medchal</option>
+                <option value="Kapra">Kapra</option>
+                <option value="Alwal">Alwal</option>
+                <option value="Kandlakoya">Kandlakoya</option>
+            </select><br>
+            
+            <label for="state">State:</label>
+            <select id="state" name="state">
+                <option value="">--Select State--</option>
+                <option value="Telangana">Telangana</option>
+            </select><br>
+            
+            <label for="country">Country:</label>
+            <select id="country" name="country">
+                <option value="">--Select Country--</option>
+                <option value="India">India</option>
+            </select><br>
+            
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+        <div id="search-results"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="about">
+        <div class="footer-content">
+            <p>&copy; 2024 MMMC Blood Donor Finder Project. All rights reserved.</p>
+            <h4>Developed by Srijeet Das, Parna Chakrabarti, Kunal Nandi</h4>
+        </div>
+    </footer>
+    <script src="script.js" defer></script>
+</body>
+</html>
