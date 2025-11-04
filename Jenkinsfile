@@ -2,11 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/Ruthvejgiduturi006/Devops.git'
-            }
-        }
+       stage('Clone Repository') {
+    steps {
+        git branch: 'main',
+            url: 'https://github.com/Ruthvejgiduturi006/Devops.git',
+            credentialsId: 'github-creds'
+    }
+}
 
         stage('Build Docker Image') {
             steps {
@@ -23,6 +25,7 @@ pipeline {
                 }
             }
         }
+        
     }
 
     post {
